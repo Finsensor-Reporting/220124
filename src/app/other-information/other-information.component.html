@@ -1,0 +1,224 @@
+<p style=" padding-left: 10px; color: #171A1F; font-size: 24px; font-family: Arial; font-weight: 600; line-height: 36px; word-wrap: break-word; padding-bottom:30px;">Other Information</p>
+
+<div class="container">
+  <span style="display: inline-block; font-weight: 500; padding-bottom:5px;">Step 1</span>: To get started, In the dropdown below choose the time period that best matches the data you're uploading.
+  <div class="row" style="height: 80px;">
+    <!-- <div> -->      
+        <div class="col-3">
+          <div class="dropdown">
+            <button style="padding-top:5px; text-align: left; width:200px; margin-left:20px; padding: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ dateString }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+
+                <li>
+                  {{ dateString }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="dropdown">
+            <button style="padding-top:5px; text-align: left; width:200px; margin-left:20px; padding: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Area
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <div *ngFor="let area of areaList">
+
+                <li><input type="checkbox" [(ngModel)]="area.selected" (change)="onCheckboxChange(area)" />
+                  {{ area.name }}</li>
+              </div>
+            </ul>
+          </div>
+    </div>
+    <div class="col-3">
+      <div class="dropdown">
+        <button style="padding-top:5px; text-align: left; width:200px; margin-left:20px; padding: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Measure
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <div *ngFor="let measure of measureList">
+
+            <li><input type="checkbox" [(ngModel)]="measure.selected" (change)="onCheckboxChange(measure)" />
+              {{ measure.name }}</li>
+          </div>
+        </ul>
+      </div>
+</div>
+    <!-- </div> -->
+    <!-- <div> -->
+        <!-- <a href="#">sample other-information file</a> -->
+    </div>
+    <span style="display: inline-block; font-weight: 500; padding-bottom:5px;">Step 2</span>: To get started, download the sample file that has been tailored to your trial balance using the below link.
+    <div class="row" style="height: 100px;">
+        <!-- <div> -->          
+          <br><a  style="display: inline; color:#037adb; text-decoration: underline;" (click)="downloadFile($event)">Sample Other Information file</a>
+        <!-- </div> -->
+        <!-- <div> -->
+            <!-- <a href="#">sample other-information file</a> -->
+        <!-- </div> -->
+    </div>
+    
+    <span style="display: inline-block; font-weight: 500; padding-bottom:5px;">Step 3</span>: Once you have downloaded the sample file, fill in the necessary details under the 'Value' and 'Source of Information' columns only.
+    <div class="row" style="height: 50px;"> </div>
+
+
+    <span style="display: inline-block; font-weight: 500; ">Step 4</span>: Re-upload your filled form below.
+    <div class="row" style="height: 130px;align-items: center;">
+        
+        <div class="row">
+            <!-- <div>import</div> -->
+            <!-- <div class="col" style="border-style: dashed; height: 100px;"> -->
+                <div class="col"
+                (dragover)="onDragOver($event)"
+                (dragleave)="onDragLeave($event)"
+                (drop)="onDrop($event)"
+                [class.drag-over]="isDragOver"
+                style="border: 2px dashed #0087f5;
+                padding: 20px;
+                text-align: center;
+                border-radius: 15px;"
+              ><input type="file" (change)="onFileSelected($event)" />
+                <p>Drag and drop a file here.</p>
+              </div>
+            <!-- </div> -->
+            <!-- <div style=" text-align: right;"><a href="#" (click)="downloadFile($event)">download sample file</a></div> -->
+        </div>
+    </div>
+    
+<p style=" padding-top:60px; font-weight:500">Preview:</p>    
+
+</div>
+<div class="container">
+    <!-- <button type="button" class="btn btn-danger" (click)="signatoryFormControls()">+ add more signatory</button> -->
+    <!-- <div class="card"style="width:100%;overflow-y: auto; overflow-x: auto;height: 300px;border-style: solid">
+      <div class="card-header" style="width:100%; overflow-x: 100%;display: flex;flex-direction: row;">
+          <div class="row">
+            <div class="col-2">Period</div>
+        <div class="col-2">Unit Code</div>
+        <div class="col-2">area</div>
+        <div class="col-3">nature of information</div>
+        <div class="col-3">source of information</div>
+        <div class="col-2">measeurement</div>
+        <div class="col-2">value</div>
+      </div></div> -->
+      <div class="card" style="height: 400px;">
+        <div class="card-header" style="width:100%; overflow-x: 100%;display: flex;flex-direction: row;">
+                <label class="col" for="inlineFormInputGroupUsername">Period</label>
+                <label class="col" for="inlineFormInputGroupUsername">Unit Code</label>
+                <label class="col" for="inlineFormInputGroupUsername">Area</label>
+                <label class="col" for="inlineFormInputGroupUsername">Nature of Information</label>
+                <label class="col" for="inlineFormInputGroupUsername">Source of Information</label>
+                <label class="col" for="inlineFormInputGroupUsername">Measeurement type</label>
+                <label class="col" for="inlineFormInputGroupUsername">Value</label>
+                <!-- <label class="col-1" for="inlineFormInputGroupUsername">Action</label> -->
+    </div>
+      <div class="card-body">
+        <!-- <div *ngFor="let row of displayeddata; let i = index">
+          <div class="row" ngFor="let key of row; let j= index">
+        <div class="col-1">
+          {{row[0]}}
+        </div>
+        <div class="col-1">
+          {{row[1]}}
+        </div>
+        <div class="col-3">
+          {{row[2]}}
+        </div>
+        <div class="col-2">
+          {{row[3]}}
+        </div>
+        <div class="col-3">
+          {{row[4]}}
+        </div>
+        <div class="col-2">
+          {{row[5]}}
+        </div>
+        <div class="col-2">
+          {{row[6]}}
+        </div>
+
+      </div>
+    </div> -->
+    <cdk-virtual-scroll-viewport
+      itemSize="40"
+      (scrolledIndexChange)="onScroll($event)"
+      class="scroll-container"
+      style="height: 300px; width: 1100px;"
+    >
+      <div *cdkVirtualFor="let control of visibleFormControls; let i = index">
+        <div class="row" style="display: flex;
+        flex-direction: row;">
+          <div *ngFor="let formControl of control; let j = index"  style="width: fit-content;">
+            <div id="column" style="width: 70px;" *ngIf="j==0">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 70px" [formControl]="formControl.control">
+            </div>
+            <div style="width: 80px;" *ngIf="j==1">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 80px;" [formControl]="formControl.control">
+            </div>
+            <div  style="width: 200px;"*ngIf="j==2">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 200px;"[formControl]="formControl.control">
+            </div>
+            <div style="width: 150px;" *ngIf="j==3">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 150px;"[formControl]="formControl.control" >
+            </div>
+            <div style="width: 200px;" *ngIf="j==4">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 200px;" [formControl]="formControl.control">
+            </div>
+            <div style="width: 100px;" *ngIf="j==5">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 100px;" [formControl]="formControl.control">
+            </div>
+            <div style="width: 100px;" *ngIf="j==6">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 100px;" [formControl]="formControl.control">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <button (click)="loadMore(scrolledIndexChange)">Load More Data</button> -->
+    </cdk-virtual-scroll-viewport>
+    <button style=" justify-content: flex-end; margin-left: 10px; font-size: 14px; color: #000000; border: 1px solid black;  padding-left: 10px; padding-right: 10px; padding-top: 2px; padding-bottom: 2px; background: #aeafb0; border-radius: 14px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex;" (click)="loadMore()">Load More Data</button>
+          <!-- <form [formGroup]="signatoryForm" class="row" *ngFor="let control of signatoryControls.controls; let i = index">
+              <div class="col-3" formArrayName="signatoryControls">
+                <label class="visually-hidden" for="inlineFormInputGroupUsername">Unit Code</label>
+                  <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Unit Code">
+              </div>
+  
+              <div formArrayName="signatoryControls" class="col-3">
+                  <label class="visually-hidden" for="inlineFormInputGroupUsername">GL Code</label>
+                  <div class="input-group">
+                      <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="GL Code">
+                  </div>
+              </div>
+            
+              <div formArrayName="signatoryControls" class="col-3">
+                <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="GL Description">
+  
+              </div>
+            
+              <div formArrayName="signatoryControls" class="col-2">
+                  <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                  <select class="form-select" id="inlineFormSelectPref">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              <div formArrayName="signatoryControls" class="col-1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form> -->
+      </div>
+    </div>
+  </div>
+  <div style=" text-align:right; padding:7px;">  <button style=" justify-content: flex-end; margin-left: 10px; font-family: Lexend; font-size: 16px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; text-align: right;" (click)="populateForm()">Save and Next</button>
+  </div>
+
+

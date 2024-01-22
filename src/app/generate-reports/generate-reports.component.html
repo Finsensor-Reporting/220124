@@ -1,0 +1,100 @@
+<p style=" padding-left: 10px; color: #171A1F; font-size: 24px; font-family: Arial; font-weight: 700; line-height: 36px; word-wrap: break-word">Reports</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+   <div style="padding-top:20px;" class="row"> <div class="col-3">
+      <label style="padding-left:20px;" for="inputValue">Report name:</label>
+      <input style="padding-top:5px; text-align: left; width:200px; margin-left:20px;  border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" type="text" class="form-control" id="inputValue" formControlName="inputValue" />
+    </div>
+    <div style="height: 50px;"></div>
+    <div class="row">
+      <!-- <p>In the below dropdowns. Please choose the option that best describes the time format of your uploaded data</p> -->
+      <div class="col-3">
+        <!-- <p>In the below dropdowns. Please choose the option that best describes the time format of your uploaded data</p> -->
+        <label style="padding-left:20px;" for="inputValue">Period 1</label>
+        <div class="dropdown">
+          
+          <button style="padding-top:5px; text-align: left; width:200px; margin-left:20px;  border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ dateString }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <!-- <div *ngFor="let unit of options"> -->
+  
+              <li>
+                {{ dateString }}</li>
+            <!-- </div> -->
+          </ul>
+        </div>
+      </div>
+      <div class="col-3">
+        <label style="padding-left:20px;" for="inputValue">Period 2</label>
+        <div class="dropdown">
+          
+              <button style="padding-top:5px; text-align: left; width:200px; margin-left:20px;  border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ dateString }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <!-- <div *ngFor="let unit of options"> -->
+  
+                  <li>
+                    {{ dateString }}</li>
+                <!-- </div> -->
+              </ul>
+            </div>
+          </div>
+    </div>
+    <!-- <div class="row"> <div class="col-3">
+      <label >Report name:</label>
+      <input type="text"   />
+      <label >Report name:</label>
+      <input type="text"   />
+    </div> -->
+</div>
+<div style="height: 30px;"></div>
+    <div style="padding-left:10px;">
+      <button style=" justify-content: flex-end; margin-left: 10px; font-family: Lexend; font-size: 16px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; text-align: right;" class="btn btn-primary" type="submit">Add Report</button>
+    </div>
+  </form>
+  <div style="height: 20px;"></div>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <label for="importName">Report Name</label>
+        </div>
+        <div class="col">
+          <label for="reportName">Period</label>
+        </div>
+        <div class="col">
+          <label for="status">Status</label>
+        </div>
+        <div class="col">
+          <label for="createdAt">Created At</label>
+        </div>
+        <div class="col">
+            <!-- <label for="createdAt">Created At:</label> -->
+          </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <!-- Additional content in the card body if needed -->
+      <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Preview" value={{report_name}} [disabled]="true" [readonly]="true" [(ngModel)]="reportName" id="reportName" />
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Preview" value={{dateString}} [disabled]="true" [readonly]="true"  id="importName" />
+      </div>      
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Preview" value={{status1}} [(ngModel)]="status" [disabled]="true" [readonly]="true" id="status" />
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Preview" value={{createdAt1}} [(ngModel)]="createdAt" [disabled]="true" [readonly]="true" id="createdAt" />
+      </div>
+      <div class="col">
+        <button style="padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" class="image-button" (click)="onDownloadClick()">
+          <img src="/assets/Download.png" style=" padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" >
+         </button>
+      </div>
+    </div>
+    </div>
+    
+  </div>

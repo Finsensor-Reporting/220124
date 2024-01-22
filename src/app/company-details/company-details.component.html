@@ -1,0 +1,341 @@
+<!doctype html>
+<p style=" padding-left: 10px; color: #171A1F; font-size: 24px; font-family: Arial; font-weight: 700; line-height: 36px; word-wrap: break-word">Company Details</p>
+<div class="container" style="width:1000px;overflow-y: auto;height: 300px;">
+  <form [formGroup]="companyForm">
+  <div class="row">
+    <div class="col">
+      <div>
+        <label style="color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word ">Company Name</label>
+      </div>
+      <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" class="form-control" aria-describedby="passwordHelpBlock" formControlName="companyName">
+    </div>
+    <div class="col">
+      <div>
+        <label style="color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word" for="company_industry" >Company Industry</label>
+      </div>
+      <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" class="form-control" aria-describedby="passwordHelpBlock" formControlName="companyIndustry">
+    </div>
+    <div class="col">
+      <div>
+        <label style="color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word" for="company_industry" >Company Code</label>
+      </div>
+      <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" type="text" formControlName="companyCode" id="company_industry" class="form-control" aria-describedby="passwordHelpBlock">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div>
+        <label style="color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word; padding-top: 20px" for="registered_office" >Registered Office</label>
+      </div>
+      <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" type="text" formControlName="registeredOffice" id="registered_office" class="form-control" aria-describedby="passwordHelpBlock">
+    </div>
+
+  </div>
+  <!-- <div *ngFor="let item of items; let i = index" class="item">
+    <div class="row">
+      <div class="col-3">
+        <label for="registered_office" class="form-label">Subsidearie Name </label>
+        <input class="form-control" type = 'text' aria-describedby="passwordHelpBlock"/>
+      </div>
+      <div class="col-3">
+        <label for="registered_office" class="form-label">Subsidearie Code </label>
+        <input type="text" class="form-control" aria-describedby="passwordHelpBlock" />
+      </div>
+      <div class="col-1" style="padding: 35px;">
+        <button type="button" class="btn btn-danger" (click)="removeItem(i)">x</button>
+      </div>
+      <div class="col-3" style="padding: 35px;">
+        <button class="btn-danger" (click)="addSubItem(i)">+ Add more Units</button>
+      </div>
+    </div>
+    <div *ngFor="let subitem of item; let j = index" class="item">
+      <div class="row">
+        <div class="col-3">
+          <label for="registered_office" class="form-label">Subsidearie Name </label>
+          <input class="form-control" aria-describedby="passwordHelpBlock" formControlName="companyName" />
+        </div>
+        <div class="col-3">
+          <label for="registered_office" class="form-label">Subsidearie Code </label>
+          <input type="text" class="form-control" aria-describedby="passwordHelpBlock" formControlName="companyName" />
+        </div>
+        <div class="col-3">
+          <div>
+            <label for="registered_office" class="form-label">currencies </label>
+            <select id="inputState" class="form-select">
+              <option selected>India Rupee INR ₹</option>
+              <option>Cambodia Riel KHR ៛</option>
+              <option>Canada Dollar CAD $</option>
+              <option>Cayman Islands Dollar KYD $</option>
+              <option>Chile Peso CLP $</option>
+              <option>China Yuan Renminbi CNY ¥</option>
+              <option>Colombia Peso COP $</option>
+              <option>Costa Rica Colon CRC ₡</option>
+              <option>Zimbabwe Dollar ZWD Z$</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-1" style="padding: 30px;">
+          <button type="button" class="btn btn-danger" (click)="removeSubItem(i,j)">x</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+  <!-- <button type="button" class="btn btn-danger" (click)="fetchData()">Submit Form</button> -->
+</form>
+
+<!-- </div> -->
+<div style="padding-left: 10px">
+<button style="padding-top: 10px; border: none; background-color: transparent; color: #55A5F4; font-size: 14px;  font-weight: 400; line-height: 22px; word-wrap: break-word; padding-top: 15px;font-weight:500" (click)="addNestedForm()">+ Add Subsidory</button>
+</div>
+<!-- <div class="container" style="width:1000px;overflow-y: auto;height: 300px;"> -->
+
+  <form style="padding-top: 10px" [formGroup]="mainForm" >
+  <div  formArrayName="nestedForms">
+    <div *ngFor="let nestedForm of nestedForms.controls; let i = index" [formGroupName]="i">
+      <div style="height:65px" class="row">
+      <div class="col-3">
+        <label style="color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word " for="registered_office" >Subsidiary Name </label>
+        <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" class="form-control" class="form-control" formControlName="subsidearieName" type = 'text' aria-describedby="passwordHelpBlock"/>
+      </div>
+      <div class="col-3">
+        <label style="color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word " for="registered_office" >Subsidiary Code </label>
+        <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" class="form-control" type="text" class="form-control"  formControlName="subsidearieCode" aria-describedby="passwordHelpBlock" />
+      </div>
+      <div class="col-1" style="padding-left: 1px; padding-top:20px">
+        <button style="border: none; background-color: transparent; color: #f10202; font-size: 18px;  font-weight: 500; line-height: 22px; word-wrap: break-word" type="button" class="image-button" (click)="removeNestedForm(i)"><img src="/assets/cancel.png" style="border:none;background-color:transparent;width: 30px; height: 30px;" ></button>
+      </div>
+      <div class="col-2" style="padding-left: 1px; padding-top:25px">
+        <button style="border: none; background-color: transparent; color: #55A5F4; font-size: 14px;  font-weight: 400; line-height: 22px; word-wrap: break-word;font-weight:500" class="Button20" (click)="addNestedNestedForm(nestedForm)">+ Add Units</button>
+      </div>
+    </div>
+      
+      <div formArrayName="nestedNestedForms">
+        <div style="height:65px" *ngFor="let nestedNestedForm of getNestedNestedForms(i).controls; let j = index" [formGroupName]="j">
+          <!-- <label>{{ 'Nested Nested Form ' + (j + 1) + ' Input:' }}</label> -->
+          <!-- <input type="text" formControlName="nestedNestedInput"> -->
+          <div style="padding-left:30px" class="row">
+            <div class="col-3">
+              <label style=" color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word " for="registered_office" >Unit Name </label>
+              <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" class="form-control" class="form-control" aria-describedby="passwordHelpBlock" formControlName="unitName" />
+            </div>
+            <div class="col-3">
+              <label style=" color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word " for="registered_office" >Unit Code </label>
+              <input style="border-radius: 0.375rem;      border: 1px solid #9095A1; background: #FFF;" type="text" class="form-control" aria-describedby="passwordHelpBlock" formControlName="unitCode" />
+            </div>
+            <div class="col-3">
+              <div>
+                <label style=" color: #171A1F; font-size: 14px;  font-weight: 400; line-height: 20px; word-wrap: break-word " for="registered_office" >Currency </label>
+                <select style="border-radius: 0.375rem;      border: 1px solid #9095A1; " type="text" class="form-control" id="inputState" class="form-select" formControlName="unitCurrency">
+                  <option selected>India Rupee INR ₹</option>
+                  <option>Cambodia Riel KHR ៛</option>
+                  <option>Canada Dollar CAD $</option>
+                  <option>Cayman Islands Dollar KYD $</option>
+                  <option>Chile Peso CLP $</option>
+                  <option>China Yuan Renminbi CNY ¥</option>
+                  <option>Colombia Peso COP $</option>
+                  <option>Costa Rica Colon CRC ₡</option>
+                  <option>Zimbabwe Dollar ZWD Z$</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-1" style="padding-left: 1px; padding-top:20px">
+              <button style="border: none; background-color: transparent; color: #f10202; font-size: 18px;  font-weight: 500; line-height: 22px; word-wrap: break-word" type="button" class="image-button" (click)="removeNestedNestedForm(i, j)"><img src="/assets/cancel.png" style="border:none;background-color:transparent;width: 30px; height: 30px;" ></button>
+            </div>
+          </div>
+          <!-- <button type="button" (click)="removeNestedNestedForm(i, j)">Remove</button> -->
+        </div>
+      </div>
+      
+      <!-- <button type="button" (click)="addNestedNestedForm(nestedForm)">Add Nested Nested Form</button> -->
+      <!-- <button type="button" (click)="removeNestedForm(i)">Remove</button> -->
+    </div>
+  </div>
+  <!-- <button type="button" (click)="addNestedForm()">Add Nested Form</button> -->
+  
+</form>
+</div>
+<div style="padding-bottom:5px; text-align: right;">
+<button style=" color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; font-size:14px" (click)="submitCompanyDetails()" >Save and Next</button>
+</div>
+
+<div class="thick-line" style="height: 10px; background-color: black; width: 100%; margin: 20px 0;"></div> 
+
+
+<p style="font-family: Arial; padding-left: 10px; padding-top:40px; color: #171A1F; font-size: 24px;  font-weight: 700; line-height: 36px; word-wrap: break-word">Auditors Details</p>
+<div style="padding-bottom:5px; text-align: right;">
+<button style="color: #ffffff; border: none;  padding-left: 10px; padding-right: 10px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; font-size:14px; " 
+type="button"  (click)="addauditorsFormControl()">+ Add Auditors</button>
+</div>
+<div class="card" style="width:100%;overflow-y: auto;overflow-x: auto;height: 400px;">
+  <div class="card-header" style="width:100%; overflow-x: 100%;display: flex;flex-direction: row;">
+          <label class="col-4" for="inlineFormInputGroupUsername">Firm Name</label>
+          <label class="col-2" for="inlineFormInputGroupUsername">Firm Registered No.</label>
+          <label class="col-2" for="inlineFormInputGroupUsername">Partner's Name</label>
+          <label class="col-2" for="inlineFormInputGroupUsername">Subsidiary Code</label>
+          <label class="col-3" for="inlineFormInputGroupUsername">Partner's membership No.</label>
+          <label class="col-3" for="inlineFormInputGroupUsername">Designation of Auditors</label>
+          <label class="col-2" for="inlineFormInputGroupUsername">Place of Auditor Signature</label>
+          <label class="col-2" for="inlineFormInputGroupUsername">Date of Signature</label>
+          <label class="col-1" for="inlineFormInputGroupUsername">Action</label>
+</div>
+  <div class="card-body" style="width: 100%;">
+      
+      <form [formGroup]="auditorsForm" style="display: flex;flex-direction: row;" *ngFor="let control of auditorControls.controls; let i = index">
+        <div formArrayName="auditorControls" style="display: flex;flex-direction: row;">
+          <div [formGroupName]="i" class="col-4">
+            <!-- <ng-container *ngIf="auditorControls.at(i) as formGroup"> -->
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Firm Name" formControlName="firmName">
+            <!-- </ng-container> -->
+          </div>
+
+          <div [formGroupName]="i" class="col-2">
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Firm Registered No." formControlName="firm_regd_no">
+        </div>
+
+          <div [formGroupName]="i" class="col-2">
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Partner's Name" formControlName="partner_name">
+            </div>
+        
+          <div [formGroupName]="i" class="col-2">
+              <!-- <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Subsidearie Code" formControlName="subsidearieCode"> -->
+              <select class="form-select" id="inlineFormSelectPref" formControlName="subsidearieCode">
+                <option *ngFor="let unit of subsidearieCode" [value]="unit">
+                  {{ unit }}
+                </option>
+                </select>
+          </div>
+        
+          <div [formGroupName]="i" class="col-3">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Partner's membership No." formControlName="partners_membership_no">
+          </div>
+
+          <div [formGroupName]="i" class="col-3">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Designation of Auditors" formControlName="designation_of_auditors">
+          </div>
+
+          <div [formGroupName]="i" class="col-2">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Place of Auditor Signature" formControlName="place_of_auditor_signature">
+          </div>
+
+            <div [formGroupName]="i" class="col-2">
+              <label class="visually-hidden" for="inlineFormSelectPref">Date of Signature</label>
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Place of Auditor Signature" type="date" formControlName="dateOfSignature">
+            </div>
+        
+          <div class="col-1" style="margin-left: 30px;">
+            <!-- <button (click)="submitauditorForm()" type="submit"><img src="/assets/savebutton.png" style="width: 30px; height: 30px;" ></button> -->
+            <button style="padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" *ngIf="editbutton[i]" (click)="toggle(i)" type="submit"><img src="/assets/savebutton.png" style="width: 25px; height: 25px;" ></button>
+            <button style="margin-right: 10px;padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" *ngIf="savebutton[i]" (click)="submitauditorForm(i)" type="submit"><img src="/assets/save.png" style="width: 25px; height: 25px;" ></button><button style="padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" *ngIf="savebutton[i]" (click)="detoggle(i)" type="submit"><img src="/assets/cancel.png" style="width: 25px; height: 25px;" ></button>
+            
+          </div>
+        </div>
+        </form>
+  </div>
+  
+<!-- </div> -->
+</div>
+<div style="padding-bottom:5px; text-align: right;">
+
+  <button style="font-size: 14px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex"type="submit" (click)="submitauditorForm(1)" >Save and Next</button>
+</div>
+
+<div class="thick-line" style="height: 10px; background-color: black; width: 100%; margin: 20px 0;"></div> 
+
+
+<p style="font-family: Arial; padding-left: 10px; color: #171A1F; font-size: 24px;  font-weight: 700; line-height: 36px;padding-top: 40px; word-wrap: break-word">Signatory Details</p>
+<div style="padding-bottom:5px; text-align: right;">
+<button style = " font-size: 14px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex"type="button" (click)="signatoryFormControls()">+ Add Signatories</button>
+</div>
+<div class="card" style="width:100%;overflow-y: auto;overflow-x: auto;height: 400px;">
+  <div class="card-header" style="width:100%; overflow-x: 100%;display: flex;flex-direction: row;">
+          <label style="width:380px;" class="col-1" for="inlineFormInputGroupUsername">Signatory name</label>
+          <label style="width:190px;" class="col-1" for="inlineFormInputGroupUsername">Signatory Designation</label>
+          <label style="width:190px;" class="col-1" for="inlineFormInputGroupUsername">DIN No. / Membership No.</label>
+          <label style="width:190px;"class="col-1" for="inlineFormInputGroupUsername">Subsidiary Code</label>
+          <label style="width:280px;"class="col-1" for="inlineFormInputGroupUsername">Place Of Signature</label>
+          <label style="width:230px;" class="col-1" for="inlineFormInputGroupUsername">Date Of Signature</label>
+          <label style="width:150px;" class="col-1" for="inlineFormInputGroupUsername">Action</label>
+</div>
+    <div class="card-body" style="width: 100%;">
+      <form [formGroup]="signatoryForm" style="display: flex;flex-direction: row;" *ngFor="let control of signatoryControls.controls; let i = index">
+        <div formArrayName="signatoryControls" style="display: flex;flex-direction: row;">
+          <div [formGroupName]="i" class="col-4">
+            <!-- <ng-container *ngIf="auditorControls.at(i) as formGroup"> -->
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Signatory name" formControlName="signatory_name">
+            <!-- </ng-container> -->
+          </div>
+
+          <div [formGroupName]="i" class="col-2">
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Signatory Designation" formControlName="Signatory_designation">
+        </div>
+
+          <div [formGroupName]="i" class="col-2">
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="DIN No. / Membership No." formControlName="memberShip_no">
+            </div>
+        
+          <div [formGroupName]="i" class="col-2">
+              <!-- <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Subsidearie Code" formControlName="subsidearieCode"> -->
+              <select class="form-select" id="inlineFormSelectPref" formControlName="subsidearie_code">
+                <option *ngFor="let unit of subsidearieCode" [value]="unit">
+                  {{ unit }}
+                </option>
+                </select>
+          </div>
+        
+          <div [formGroupName]="i" class="col-3">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Place Of Signature" formControlName="plase_of_signature">
+          </div>
+
+          <!-- <div [formGroupName]="i" class="col-3">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Designation of Auditors" formControlName="date_of_signature">
+          </div> -->
+
+          <div [formGroupName]="i" class="col-2">
+            <label class="visually-hidden" for="inlineFormSelectPref">Date of Signature</label>
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="date" type="date" formControlName="date_of_signature">
+          </div>
+          <!-- <div [formGroupName]="i" class="col-2">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Place of Auditor Signature" formControlName="place_of_auditor_signature">
+          </div> -->
+
+        
+          <div class="col-2" style="width: 70px; margin-left: 30px;">
+            <!-- <button (click)="submitauditorForm()" type="submit"><img src="/assets/savebutton.png" style="width: 30px; height: 30px;" ></button> -->
+            <button style="padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" *ngIf="editbutton1[i]" (click)="toggle1(i)" class="image-button" type="submit"><img src="/assets/savebutton.png" style="border:none;background-color:transparent;width: 25px; height: 25px;" ></button>
+            <button style="margin-right: 10px;padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" *ngIf="savebutton1[i]" (click)="submitsignatoryForm(i)" class="image-button" type="submit"><img src="/assets/save.png" style="border:none;background-color:transparent;width: 30px; height: 30px;" ></button><button style="padding-top:4px;border:none;background-color:transparent;width: 25px; height: 25px;" *ngIf="savebutton1[i]" (click)="detoggle1(i)" class="image-button" type="submit"><img src="/assets/cancel.png" style="border:none;background-color:transparent;width: 30px; height: 30px;" ></button>
+            
+          </div>
+        </div>
+        </form>
+    </div>
+  </div>
+
+  <div style="padding-bottom:5px; text-align: right;">
+
+    <button style="font-size: 14px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex"type="submit" (click)="submitsignatoryForm(1)" >Save and Next</button>
+  </div>
+    <!-- <button type="button" class="btn btn-danger">add subsidearies</button> -->
+    
+    <!-- <div> -->
+        <!-- <label for="company_name" class="form-label">Company Name</label> -->
+    <!-- </div> -->
+<!-- <input type="text" id="company_name" class="form-control" aria-describedby="passwordHelpBlock"> -->
+<!-- <div id="company_name_block" class="form-text">
+  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+</div> -->
+
+<!-- </div>
+<div>
+    <div>
+        <label for="company_industry" class="form-label">Company Industry</label>
+    </div>
+<input type="text" id="company_industry" class="form-control" aria-describedby="passwordHelpBlock">
+</div>
+
+<div style = "padding:20px;">
+    <div>
+        <label for="registered_office" class="form-label">Registered Office</label>
+    </div>
+<input type="text" id="registered_office" class="form-control" aria-describedby="passwordHelpBlock">
+</div> -->

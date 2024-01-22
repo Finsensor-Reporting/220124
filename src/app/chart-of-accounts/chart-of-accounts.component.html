@@ -1,0 +1,400 @@
+<!doctype html>
+<p style=" padding-left: 10px; color: #171A1F; font-size: 24px; font-family: Arial; font-weight: 600; line-height: 36px; word-wrap: break-word">Chart of Accounts</p>
+<div style="padding-top:10px"></div>
+<div class="container" style="border-radius: 10px 5px; width:1000px;overflow-y: auto;height: 350px;">
+  <span style="display: inline-block; font-weight: 500;">Step 1</span>: Import your Trial Balance using the format provided in the Sample file.
+  <div class="row">
+    
+
+      <!-- <div class="col" style="border-style: dashed; height: 100px;"> -->
+          <div class="col"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+          [class.drag-over]="isDragOver"
+          style="border: 2px dashed #0087f5;
+          padding: 20px;
+          text-align: center;
+          border-radius: 15px;"
+        ><input  *ngIf="filenotChosen1" type="file" (change)="onFileSelected1($event)" />
+        <div *ngIf="removeFile1"><button style= "border-radius: 15px;" (click)="removetheFile1()">{{selectedFile1.name}}</button><img (click)="removetheFile1()" src="assets/cancel.png" style="height: 40px; width: 40px;"></div>
+          <p *ngIf="filenotChosen1">Drag and drop a file here.</p>
+        </div>
+      <!-- </div> -->
+      <div style=" text-align: right; color:#0087f5; text-decoration: underline;"><a  (click)="downloadFile($event)">Download sample file</a></div>
+  </div>
+  <div style="height: 90px;"></div>
+  <p style="display: inline; font-weight: 500;">Step 2</p>
+  <p style="display: inline;">: Click </p>
+  <div style="display: inline; color:#037adb; text-decoration: underline;" (click)="downloadCocFile($event)">here</div> 
+  <!-- <p>Selected Units: {{ selectedGlcodes }}</p> -->
+  <p style="display: inline;"> to download Mapping & COC master files. Fill in COC fields of the mapping file using the COC master file.</p>
+</div>
+<div class="container" style="width:1000px;overflow-y: auto;">
+  <span style="display: inline-block; font-weight: 500;">Step 3</span>: Upload your updated mapping file which contains filled COC fields.
+    <div class="row">
+        <!-- <div class="col" style="border-style: dashed; height: 100px;"> -->
+            <div class="col"
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)"
+            (drop)="onDrop($event)"
+            [class.drag-over]="isDragOver"
+            style="border: 2px dashed #0087f5;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;"
+          ><input *ngIf="filenotChosen" type="file" (change)="onFileSelected($event)" />
+          <div *ngIf="removeFile"><button (click)="removetheFile()">{{selectedFile.name}}</button><img (click)="removetheFile()" src="assets/cancel.png" style="height: 40px; width: 40px;"></div>
+            <p *ngIf="filenotChosen">Drag and drop a file here.</p>
+          </div>
+          
+        <!-- </div> -->
+        <!-- <div style=" text-align: right;"><a  (click)="downloadFile($event)">download sample file</a></div> -->
+        <div style="height: 50px;"></div>
+    </div>
+
+    <span style="display: inline-block; font-weight: 500; padding-bottom:7px">Step 4</span>: In the below dropdowns. Please choose the option that best describes the time format of your uploaded data
+    <div class="row">      
+      <div class="col"><div Style="font-weight: 410;"><label >Period beginning</label></div>
+      <input style= "width: 150px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: #ffffff; 
+      color: #333;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" type="date" value="selectedDate" [(ngModel)]="selectedDate"></div>
+      <div class="col"><div Style="font-weight: 410;"><label>Period ending</label></div>
+      <input style= "width: 150px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: #ffffff; 
+      color: #333;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" type="date" value="selectedDate1" [(ngModel)]="selectedDate1"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <!-- <button class="btn btn-primary" (click)="fetchDate()">Fetch Data</button> -->
+    <div>
+      <!-- <div class="form-group">
+        <label for="datepicker">Select Date:</label>
+        <input
+          id="datepicker"
+          type="text"
+          class="form-control"
+          placeholder="Choose a date"
+          [(ngModel)]="selectedDate"
+          [bsDatepicker]="datepicker"
+        />
+        <bs-datepicker #datepicker></bs-datepicker>
+      </div> -->
+      <!-- <button class="btn btn-primary" (click)="fetchDate()">Fetch Data</button> -->
+      <!-- <div *ngIf="fetchedDate"> -->
+        <!-- <h5>Fetched Da/ta:</h5> -->
+        <!-- <p>{{ fetchedDate }}</p> -->
+      <!-- </div> -->
+    <!-- </div> -->
+    <div style="height: 50px;"></div>
+
+    <!-- <p>Selected Units: {{ selectedGlcodes }}</p> -->
+</div></div>
+<div class="container" >
+  <p style="font-weight:500;"> Preview: </p>
+  <div style="display: flex; padding-bottom:10px;padding-top:5px;  justify-content: start" class="container" >
+  
+    
+    <div  class="dropdown">
+      <button style="text-align: left; width:200px; margin-left:10px; padding: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Unit Name
+      </button>
+      <ul style="height: 300px; overflow-y: auto;" class="dropdown-menu dropdown-menu-dark">
+        <div *ngFor="let unit of options">
+
+          <li><input type="checkbox" [(ngModel)]="unit.selected" (change)="onCheckboxChange(unit)" />
+            {{ unit.unitName }}</li>
+        </div>
+      </ul>
+    </div>
+  
+  
+    <div  class="dropdown">
+      <button style="text-align: left; width:200px; margin-left:20px; padding: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);" class="btn btn-black-border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        GL Code
+      </button>
+      <ul style="height: 300px; overflow-y: auto;" class="dropdown-menu dropdown-menu-dark">
+        <div *ngFor="let Glcode of options2">
+    
+          <li><input type="checkbox" [(ngModel)]="Glcode.selected" (change)="onCheckboxChange(Glcode)" />
+            {{ Glcode["Gl Code"] }}</li>
+        </div>
+      </ul>
+    </div>
+  
+ 
+  
+    <!-- <div class="slider-container">
+      <div id="rangeSlider" class="slider">
+        <div id="pointer1" class="pointer" (mousedown)="onPointerDown($event, 'pointer1')"></div>
+        <div id="pointer2" class="pointer" (mousedown)="onPointerDown($event, 'pointer2')"></div>
+      </div>
+    </div> -->    
+    <button style="margin-left:20px; font-size: 14px; color: #ffffff; border: none;  padding-left: 14px; padding-right: 14px; padding-top: 0px; padding-bottom: 0px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center;" (click)="fetchfilterdata()">Filter</button>
+  
+  </div>
+
+
+  <!-- <button type="button" class="btn btn-danger" (click)="signatoryFormControls()">+ add more signatory</button> -->
+  <div class="card"style="width:100%;overflow-y: auto;height: 300px;border-style: solid">
+    <div class="card-header">
+        <div class="row">
+      <div class="col-2" style="padding-left: 40px;">Unit Name</div>
+      <div class="col-2" style="padding-left: 100px;">GL Code</div>
+      <div class="col-5" style="padding-left: 170px;">GL Description</div>
+      <div class="col-2">COC Name</div>
+      <!-- <div class="col-1" style="padding-left: 30px;">Action</div> -->
+    </div></div>
+    <div class="card-body">
+      <cdk-virtual-scroll-viewport
+      itemSize="40"
+      (scrolledIndexChange)="onScroll($event)"
+      class="scroll-container"
+      style="height: 300px; width: 1100px;"
+    >
+      <div *cdkVirtualFor="let control of visibleFormControls1; let i = index">
+        <div class="row" style="display: flex;
+        flex-direction: row;">
+          <div *ngFor="let formControl of control; let j = index"  style="width: fit-content;">
+            <!-- <div id="column" style="width: 70px;" *ngIf="j==0">
+              <input style="width: 70px" [formControl]="formControl.control">
+            </div> -->
+            <div style="width: 120px;" *ngIf="j==1">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 120px;" [formControl]="formControl.control">
+            </div>
+            <div style="width: 200px;" *ngIf="j==3">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 200px;"[formControl]="formControl.control" >
+            </div>
+            <div  style="width: 300px;"*ngIf="j==2">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <input style="width: 300px;"[formControl]="formControl.control">
+            </div>
+            <div style="width: 300px;" *ngIf="j==4">
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <!-- <input style="width: 300px;"[formControl]="formControl.control"> -->
+              <select id="inputState" class = "form-select" style="width: 300px;" [formControl]="formControl.control">
+                <!-- <option>{{formControl.control.value}}</option> -->
+                <option>
+                  (Increase)/ decrease in inventories of finished goods, work-in-progress and traded goods
+                </option>
+                <option>Accrued Interest on term loan from banks - Non current</option>
+                <option>Adjustment of tax relating to earlier years</option>
+                <option>Advance to employees</option>
+                <option>Advance to others</option>
+                <option>Advance to related parties</option>
+                <option>Advance to related parties - financial asset</option>
+                <option>Advances from customers</option>
+                <option>Advances from others</option>
+                <option>Advances to Vendors - Considered Doubtful</option>
+                <option>Advances to Vendors - Considered Good</option>
+                <option>Advances to Vendors - Provision for doubtful - Considered Doubtful</option>
+                <option>Advertising and sales promotion</option>
+                <option>Aircraft</option>
+                <option>Aircraft - Accumulated Depreciation</option>
+                <option>Amortisation of deferred lease rental</option>
+                <option>Amortisation of intangible asset</option>
+                <option>Application money received for allotment of securities to the extent refundable and interest accrued thereon</option>
+                <option>Assets held for sale</option>
+                <option>Audit Fees</option>
+                <option>Bad Debts</option>
+                <option>Balances with Government authorities - Current</option>
+                <option>Balances with Government authorities - Non Current</option>
+                <option>Bank charges - Finance cost</option>
+                <option>Bank deposits with original maturity of more than three months but up to twelve months</option>
+                <option>Bank deposits with original maturity of up to three months</option>
+                <option>Bank deposits with remaining maturity of more than 12 months</option>
+                <option>Bank overdraft - Secured</option>
+                <option>Bank overdraft - Unsecured</option>
+                <option>Banquet and decoration expenses</option>
+                <option>Bonus to employees - Employee benefits</option>
+                <option>Buildings</option>
+                <option>Buildings - Accumulated Depreciation</option>
+                <option>Buyers credit from bank - Secured</option>
+                <option>Buyers credit from bank - Unsecured</option>
+                <option>Commission -other than sole selling agent</option>
+                <option>Communication costs</option>
+                <option>Computers</option>
+                <option>Computers - Accumulated Depreciation</option>
+                <option>Consumption of food and beverages (excluding liquor and wine)</option>
+                <option>Consumption of liquor and wine</option>
+                <option>Consumption of packing material</option>
+                <option>Consumption of Raw Material</option>
+                <option>Consumption of raw material from discontinuing operations</option>
+                <option>Consumption of stores and spares</option>
+                <option>Contribution to provident and other funds - Employee benefits</option>
+                <option>CSR expense</option>
+                <option>Current account in bank</option>
+                <option>Current Maturities - Accrued Interest on Term Loan from Banks - Secured</option>
+                <option>Current Maturities - Debentures - Secured</option>
+                <option>Current Maturities - Debentures - Unsecured</option>
+                <option>Current Maturities - Terms Loans from Banks - Secured</option>
+                <option>Current Maturities - Terms Loans from Banks - Unsecured</option>
+                <option>Current Maturities - Vehicle Loans from Banks - Secured</option>
+                <option>Current tax expense</option>
+                <option>Debenture redemption reserve</option>
+                <option>Debentures from bank - Secured</option>
+                <option>Debentures from NBFC - Secured</option>
+                <option>Debentures from third parties - Secured</option>
+                <option>Debentures from third parties - Unsecured</option>
+                <option>Debt instruments through Other Comprehensive Income</option>
+                <option>Deferred consideration</option>
+                <option>Deferred Government grant considered as income</option>
+                <option>Deferred Government Grants - Non-current portion</option>
+                <option>Deferred lease rent - Current</option>
+                <option>Deferred lease rent - Non-current</option>
+                <option>Deferred revenue/Revenue received in advance</option>
+                <option>Deferred tax assets</option>
+                <option>Deferred tax charge/(credit)</option>
+                <option>Deposits received taken - non-current</option>
+                <option>Deposits received taken against assets given under finance lease - non-current</option>
+                <option>Deposits under protest with Government authorities - Non-Current</option>
+                <option>Deposits under protest with Government authorities - Current</option>
+                <option>Depreciation from discontinuing operations</option>
+                <option>Depreciation of Right-of-use assets</option>
+                <option>Depreciation on Investment property</option>
+                <option>Depreciation on Property, Plant and Equipment</option>
+                <option>Depreciation on Property, Plant and Equipment from discontinuing operations</option>
+                <option>Depreciation on Revalued Assets</option>
+                <option>Depreciation on Right of use assets</option>
+                <option>Depreciation on tangible assets</option>
+                <option>Depreciation on Vehicles</option>
+                <option>Depreciation on Work in Progress</option>
+                <option>Depreciation written back on revalued assets</option>
+                <option>Derivative (Loss)/Gain recognized in the statement of profit and loss</option>
+                <option>Derivative Premium</option>
+                <option>Derivatives</option>
+                <option>Development Cost</option>
+                <option>Development cost from capital work-in-progress</option>
+                <option>Development cost of mines and wells</option>
+                <option>Development Cost of Software</option>
+                <option>Discount allowed</option>
+                <option>Discount on issue of securities</option>
+                <option>Discount on securities</option>
+                <option>Discount to customer</option>
+                <option>Dividend Distribution Tax</option>
+                <option>Dividends</option>
+                <option>Documents sent to bank</option>
+                <option>Donation</option>
+                <option>DP Charges</option>
+                <option>Drawing Power</option>
+                <option>Due to MSME undertakings - Trade Payables</option>
+                <option>Due to other parties - Trade Payables</option>
+                <option>Due to related parties</option>
+                <option>Due to related parties - Trade Payables</option>
+                <option>Duties and Taxes recovered</option>
+                <option>Early settlement discount</option>
+                <option>EBDITA</option>
+                <option>EBIT</option>
+                <option>EBITDA</option>
+                <option>Education Cess</option>
+                <option>Electricity expenses</option>
+                <option>Electronic Hardware</option>
+                <option>Electronic Software</option>
+                <option>Email Charges</option>
+                <option>Employee benefits expense</option>
+                <option>Employee Compensation Expense</option>
+                <option>Employee Pension and Other Employee Benefits Expense</option>
+                <option>Employee Reimbursement</option>
+                <option>Employee salary/wages and bonus</option>
+                <option>Employee Stock Compensation Expense</option>
+                <option>Employee Stock Option Scheme Forfeited</option>
+                <option>Employees State Insurance Corporation(ESIC)</option>
+                <option>Employees' State Insurance Scheme</option>
+                <option>Employee's contribution to provident and other funds</option>
+                <option>Employee's Pension Scheme</option>
+                <option>Employees' Provident Fund</option>
+                <option>Employees' State Insurance Fund</option>
+                <option>Employees' State Insurance Scheme</option>
+                <option>Employer's contribution to provident and other funds</option>
+                <option>Employer's contribution to provident and other funds - Trade Payables</option>
+
+              </select>
+            </div>
+            <!-- <div style="width: 100px;" *ngIf="j==5"> -->
+              <!-- <label>{{ formControl.label }}:</label> -->
+              <!-- <input style="width: 100px;" [formControl]="formControl.control">
+            </div> -->
+          </div>
+          <!-- <div style="width: 30px;"> -->
+            <!-- <label>{{ formControl.label }}:</label> -->
+            <!-- <input style="width: 300px;" [formControl]="formControl.control"> -->
+            <!-- <button (click) = toggleSave(i)><img  src="assets/savebutton.png" style="height: 25px; width: 25px;"></button> -->
+          <!-- </div> -->
+        </div>
+      </div>
+      <button *ngIf="showmore" (click)="loadMore()">Load More Data</button>
+    </cdk-virtual-scroll-viewport>
+    <!--<button (click)="populateForm()">Populate Form</button>-->
+      <!-- <div *ngFor="let row of displayeddata; let i = index">
+        <div class="row" ngFor="let key of row; let j= index">
+      <div class="col-2">
+        {{row[1]}}
+      </div>
+      <div class="col-2">
+        {{row[3]}}
+      </div>
+      <div class="col-5">
+        {{row[2]}}
+      </div>
+      <div class="col-2">
+        {{row[4]}}
+      </div>
+      <div class="col-1">
+      </div>
+    </div>
+  </div> -->
+        <!-- <form [formGroup]="signatoryForm" class="row" *ngFor="let control of signatoryControls.controls; let i = index">
+            <div class="col-3" formArrayName="signatoryControls">
+              <label class="visually-hidden" for="inlineFormInputGroupUsername">Unit Code</label>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Unit Code">
+            </div>
+
+            <div formArrayName="signatoryControls" class="col-3">
+                <label class="visually-hidden" for="inlineFormInputGroupUsername">GL Code</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="GL Code">
+                </div>
+            </div>
+          
+            <div formArrayName="signatoryControls" class="col-3">
+              <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="GL Description">
+
+            </div>
+          
+            <div formArrayName="signatoryControls" class="col-2">
+                <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                <select class="form-select" id="inlineFormSelectPref">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            <div formArrayName="signatoryControls" class="col-1">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form> -->
+    </div>
+  </div>
+</div>
+<div class="container" style="display: flex; justify-content: flex-end; padding-bottom:10px;padding-top:5px;">
+<div >
+<button style=" margin-left: 10px;  font-size: 14px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex"  (click)="openPopup()">View Data</button>
+</div>
+<div > 
+<button style=" margin-left: 10px; font-size: 14px; color: #ffffff; border: none;  padding-left: 14.50px; padding-right: 14.50px; padding-top: 7px; padding-bottom: 7px; background: #379AE6; border-radius: 18px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex" (click)="populateForm()">Save and Next</button>
+</div>
+</div>
