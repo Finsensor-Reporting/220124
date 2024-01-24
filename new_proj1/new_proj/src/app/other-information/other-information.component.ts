@@ -298,7 +298,7 @@ export class OtherInformationComponent {
       
       console.log('formdata',this.selectedFile)
       this.http
-        .post('http://localhost:6019/api/stringCompare', formData)
+        .post('https://wild-pink-magpie-hem.cyclic.app/api/stringCompare', formData)
         .subscribe(
           (response) => {
             console.log('Upload successful:', response);
