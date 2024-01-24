@@ -15,7 +15,7 @@ export class compService {
         // headers.append('Content-Type', 'application/json');
         // params.ipInfo = localStorage.getItem('ipInfo')
         // if(this.appConfig && this.appConfig.loggedInUserInfo) params.loggedInUser    = this.appConfig.loggedInUserInfo
-        return this.http.post('http://localhost:6019/api/submitData', params,{headers})
+        return this.http.post('https://wild-pink-magpie-hem.cyclic.app/api/submitData', params,{headers})
         .pipe(
             map((res: any) => {
               return res;
@@ -28,7 +28,7 @@ export class compService {
           // headers.append('Content-Type', 'application/json');
           // params.ipInfo = localStorage.getItem('ipInfo')
           // if(this.appConfig && this.appConfig.loggedInUserInfo) params.loggedInUser    = this.appConfig.loggedInUserInfo
-          return this.http.post('http://localhost:6019/api/submitAuditorData', params,{headers})
+          return this.http.post('https://wild-pink-magpie-hem.cyclic.app/api/submitAuditorData', params,{headers})
           .pipe(
               map((res: any) => {
                 return res;
@@ -41,7 +41,7 @@ export class compService {
             // headers.append('Content-Type', 'application/json');
             // params.ipInfo = localStorage.getItem('ipInfo')
             // if(this.appConfig && this.appConfig.loggedInUserInfo) params.loggedInUser    = this.appConfig.loggedInUserInfo
-            return this.http.post('http://localhost:6019/api/submitAuditorData', params,{headers})
+            return this.http.post('https://wild-pink-magpie-hem.cyclic.app/api/submitAuditorData', params,{headers})
             .pipe(
                 map((res: any) => {
                   return res;
@@ -55,7 +55,7 @@ export class compService {
               // headers.append('Content-Type', 'application/json');
               // params.ipInfo = localStorage.getItem('ipInfo')
               // if(this.appConfig && this.appConfig.loggedInUserInfo) params.loggedInUser    = this.appConfig.loggedInUserInfo
-              return this.http.post('http://localhost:6019/api/fetchData', params,{headers})
+              return this.http.post('https://wild-pink-magpie-hem.cyclic.app/api/fetchData', params,{headers})
               .pipe(
                   map((res: any) => {
                     return res;
@@ -69,7 +69,7 @@ export class compService {
               // headers.append('Content-Type', 'application/json');
               // params.ipInfo = localStorage.getItem('ipInfo')
               // if(this.appConfig && this.appConfig.loggedInUserInfo) params.loggedInUser    = this.appConfig.loggedInUserInfo
-              return this.http.post('http://localhost:6019/api/submitFormdata', params,{headers})
+              return this.http.post('https://wild-pink-magpie-hem.cyclic.app/api/submitFormdata', params,{headers})
               .pipe(
                   map((res: any) => {
                     return res;
@@ -83,7 +83,7 @@ export class compService {
                 // headers.append('Content-Type', 'application/json');
                 // params.ipInfo = localStorage.getItem('ipInfo')
                 // if(this.appConfig && this.appConfig.loggedInUserInfo) params.loggedInUser    = this.appConfig.loggedInUserInfo
-                return this.http.post('http://localhost:6019/api/submitOiFormdata', params,{headers})
+                return this.http.post('https://wild-pink-magpie-hem.cyclic.app/api/submitOiFormdata', params,{headers})
                 .pipe(
                     map((res: any) => {
                       return res;
@@ -92,21 +92,21 @@ export class compService {
                 }
             
               downloadFile(area,measure,dateString,uuid): Observable<Blob> {
-                return this.http.get('http://localhost:6019/api/getFile?areaList='+area+'&measureList='+measure+'&date='+dateString+'&uuid='+uuid).pipe(
+                return this.http.get('https://wild-pink-magpie-hem.cyclic.app/api/getFile?areaList='+area+'&measureList='+measure+'&date='+dateString+'&uuid='+uuid).pipe(
                   map((res: any) => {
                     return res;
                   })
                 );
               }
               downloadCocFile(params): Observable<Blob> {
-                return this.http.get('http://localhost:6019/api/getFile?CocFile='+params.file+'&uuid='+params.uuid).pipe(
+                return this.http.get('https://wild-pink-magpie-hem.cyclic.app/api/getFile?CocFile='+params.file+'&uuid='+params.uuid).pipe(
                   map((res: any) => {
                     return res;
                   })
                 );
               }
               downloadReport(params,uuid,dateString): Observable<Blob> {
-                return this.http.get('http://localhost:6019/api/getFile?fileName='+params+'&uuid='+uuid+'&date='+dateString).pipe(
+                return this.http.get('https://wild-pink-magpie-hem.cyclic.app/api/getFile?fileName='+params+'&uuid='+uuid+'&date='+dateString).pipe(
                   map((res: any) => {
                     return res;
                   })
