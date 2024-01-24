@@ -604,7 +604,7 @@ let uuid = sessionStorage.getItem("uuid")
       formData.append('generateFile',"true")
       console.log('formdata',formData)
       this.http
-        .post('https://wild-pink-magpie-hem.cyclic.app/api/stringCompare', formData)
+        .post('https://finsensor-reporting-backend.onrender.com/api/stringCompare', formData)
         .subscribe(
           (response) => {
             console.log('Upload successful:', response);
